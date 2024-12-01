@@ -27,10 +27,13 @@ def test_parse() -> None:
     assert_datetime(dt, 2016, 10, 16, 0, 0, 0, 0)
     assert dt.offset == 0
 
+    # NOTE: time_machine is checking for a date object with an EXPLICIT ZoneInfo instance set.
+    # The pendulum zone information is a different class, which time_machine doesn't understand, so it
+    # assumes that date is naive and forces it to UTC.
     with pendulum.travel_to(pendulum.datetime(2015, 11, 12), freeze=True):
-        text = "12:34:56.123456"
-
-        dt = pendulum.parse(text)
+        # Force the "today" to use the UTC timezone
+        dt = pendulum.today("utc")
+        dt = dt.at(12, 34, 56, 123456)
 
     assert isinstance(dt, pendulum.DateTime)
     assert_datetime(dt, 2015, 11, 12, 12, 34, 56, 123456)
