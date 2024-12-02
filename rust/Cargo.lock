@@ -3,14 +3,6 @@
 version = 3
 
 [[package]]
-name = "_pendulum"
-version = "3.0.0"
-dependencies = [
- "mimalloc",
- "pyo3",
-]
-
-[[package]]
 name = "autocfg"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -111,6 +103,14 @@ dependencies = [
  "redox_syscall",
  "smallvec",
  "windows-sys",
+]
+
+[[package]]
+name = "pendulum"
+version = "3.0.0"
+dependencies = [
+ "mimalloc",
+ "pyo3",
 ]
 
 [[package]]
